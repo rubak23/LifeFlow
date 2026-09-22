@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LifeFlow מערכת חכמה לניהול Blood Bank">
+  <title>LifeFlow מערכת Blood Bank</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23174c4f'/%3E%3Cpath d='M32 12C26 22 18 30 18 40a14 14 0 0 0 28 0c0-10-8-18-14-28Z' fill='%23fff'/%3E%3Cpath d='M27 39h10M32 34v10' stroke='%23b95d63' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="rtl.css">
+  <link rel="stylesheet" href="command.css">
+  <link rel="stylesheet" href="workflow.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="דף הבית LifeFlow"><span class="brand-mark">♥</span><span>LifeFlow</span></a>
+      <nav id="nav" aria-label="ניווט ראשי">
+        <a class="active" href="#dashboard">לוח בקרה</a>
+        <a href="#inventory">מלאי Blood Units</a>
+        <a href="#requests">בקשות דם</a>
+        <a href="#donations">תרומות</a>
+        <a href="#donors">תיקי תורמים</a>
+        <a href="#screening">בדיקות מנות דם</a>
+        <a href="#lab-orders">בדיקות מטופלים</a>
+        <a href="#compatibility">Compatibility</a>
+        <a href="#analytics">חיזוי מלאי</a>
+        <a href="#emergency">מצב חירום</a>
+        <a href="#admin">ניהול מערכת</a>
+      </nav>
+      <div class="profile-card"><span class="avatar">NA</span><div><strong id="profileName">נועה אדלר</strong><small id="profileRole">צוות Blood Bank</small></div><button id="logoutBtn" class="logout" title="התנתקות">↪</button></div>
+    </aside>
+    <main>
+      <header class="topbar"><button id="menuBtn" class="icon-button" aria-label="פתיחת תפריט">☰</button><div><span class="eyebrow">Soroka Medical Center</span><h1>בוקר טוב, נועה</h1></div><div class="top-actions"><div class="system-status" aria-label="מצב המערכת"><i></i><span>המערכת מחוברת</span></div><button class="ghost" data-action="export">ייצוא דוח</button></div></header>
+      <section id="view" class="view" aria-live="polite"></section>
+    </main>
+  </div>
+  <div id="loginGate" class="login-gate">
+    <section class="login-panel">
+      <div class="login-brand"><span class="brand-mark">♥</span><strong>LifeFlow</strong></div>
+      <span class="eyebrow">סביבת עבודה מאובטחת לניהול Blood Bank</span>
+      <h1>כניסה למערכת</h1>
+      <p>בחרו תפקיד Demo כדי להיכנס למערכת התפעולית. המערכת אינה משתמשת במידע רפואי אמיתי.</p>
+      <div class="role-grid">
+        <button data-login="staff"><b>צוות Blood Bank</b><span>תרומות, בדיקות, Blood Units ו Matching</span></button>
+        <button data-login="donor"><b>Blood Donor</b><span>Eligibility, תורים והיסטוריית תרומות</span></button>
+        <button data-login="hospital"><b>צוות בית חולים</b><span>בדיקת מלאי והגשת בקשות דם</span></button>
+        <button data-login="admin"><b>מנהל מערכת</b><span>משתמשים, דוחות ו Audit Trail</span></button>
+      </div>
+      <small class="login-note">Educational prototype בלבד — המערכת אינה מאושרת לשימוש Clinical.</small>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
