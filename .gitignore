@@ -1,0 +1,8 @@
+.sites-runtime/
+node_modules/
+*.zip
+*.tar.gz
+.DS_Store
+__pycache__/
+*.pyc
+data/*.db
