@@ -1,0 +1,11 @@
+import test from'node:test';import assert from'node:assert/strict';import{isCompatible,rankUnits,forecast,donorEligibility}from'../dist/domain.js';
+test('O negative can serve O negative',()=>assert.equal(isCompatible('O-','O-'),true));
+test('A positive cannot serve O positive',()=>assert.equal(isCompatible('A+','O+'),false));
+test('AB positive accepts all eight groups',()=>['O-','O+','A-','A+','B-','B+','AB-','AB+'].forEach(x=>assert.equal(isCompatible(x,'AB+'),true)));
+test('matching excludes unavailable units',()=>assert.equal(rankUnits([{id:'1',type:'O-',status:'Reserved',expires:'2026-10-01',branch:'A'}],{type:'O-',today:'2026-09-20',branch:'A'}).length,0));
+test('matching protects universal donor stock',()=>{const r=rankUnits([{id:'o',type:'O-',status:'Available',expires:'2026-10-01',branch:'A'},{id:'a',type:'A+',status:'Available',expires:'2026-10-01',branch:'A'}],{type:'A+',today:'2026-09-20',branch:'A'});assert.equal(r[0].id,'a')});
+test('forecast is never negative',()=>assert.equal(forecast(2,4,0,7),0));
+test('eligible donor passes basic criteria',()=>assert.equal(donorEligibility({age:30,weight:70,daysSinceDonation:90}).eligible,true));
+test('recent donor is blocked',()=>{const r=donorEligibility({age:30,weight:70,daysSinceDonation:20});assert.equal(r.eligible,false);assert.match(r.reason,/36/)});
+test('underweight donor is blocked',()=>assert.equal(donorEligibility({age:25,weight:48,daysSinceDonation:90}).eligible,false));
+test('temporary restriction requires review',()=>assert.equal(donorEligibility({age:25,weight:60,daysSinceDonation:90,temporaryRestriction:true}).eligible,false));
